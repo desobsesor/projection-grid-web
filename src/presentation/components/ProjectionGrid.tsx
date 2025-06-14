@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { FixedSizeGrid } from 'react-window';
 import { useProductStore } from '../../application/store/productStore';
 import { GridCell } from './GridCell';
@@ -154,6 +154,51 @@ export const ProjectionGrid: React.FC<ProjectionGridProps> = ({ width, height })
     return <div style={style} className="border-b border-r border-gray-300"></div>;
   };
 
+  // Create header row with fixed columns and date columns
+  const renderHeaderRow = () => {
+    return (
+      <div className="flex" style={{ height: HEADER_HEIGHT, width: COLUMN_WIDTH * (FIXED_COLUMNS + dates.length) }}>
+        {/* Fixed header cells */}
+        <div className="bg-gray-200 font-semibold flex items-center justify-center border-b border-r border-gray-300"
+          style={{ width: COLUMN_WIDTH, minWidth: COLUMN_WIDTH }}>
+          Center Code
+        </div>
+        <div className="bg-gray-200 font-semibold flex items-center justify-center border-b border-r border-gray-300"
+          style={{ width: COLUMN_WIDTH, minWidth: COLUMN_WIDTH }}>
+          Reference
+        </div>
+
+        {/* Date header cells */}
+        {dates.map((date) => {
+          const isSelected = selectedDate === date;
+          return (
+            <div
+              key={date}
+              className={`text-md flex items-center justify-center border-b border-r border-gray-300 cursor-pointer transition-colors duration-150 hover:bg-blue-50 ${isSelected ? 'bg-blue-200 hover:bg-blue-200' : 'bg-gray-200'}`}
+              style={{ width: COLUMN_WIDTH, minWidth: COLUMN_WIDTH }}
+              onClick={() => selectDate(date)}
+              title="Click to filter by this date"
+            >
+              {new Date(date).toLocaleDateString()}
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  // Reference to sync scroll positions
+  const headerScrollRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<FixedSizeGrid>(null);
+
+  // Handle grid scroll to sync header scroll
+  const handleGridScroll = ({ scrollLeft }: { scrollLeft: number; scrollTop: number }) => {
+    if (headerScrollRef.current) {
+      headerScrollRef.current.scrollLeft = scrollLeft;
+    }
+    handleScroll({ scrollLeft });
+  };
+
   return (
     <div className="flex h-full">
       {/* Summary panel */}
@@ -169,21 +214,36 @@ export const ProjectionGrid: React.FC<ProjectionGridProps> = ({ width, height })
       </div>
 
       {/* Grid panel */}
-      <div className="flex-1 overflow-hidden">
-        {/*<div style={{ height: HEADER_HEIGHT }} className="bg-gray-200"></div>*/}
-
-        <FixedSizeGrid
-          className="scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
-          width={gridWidth}
-          height={gridHeight + HEADER_HEIGHT}
-          columnCount={FIXED_COLUMNS + dates.length}
-          columnWidth={COLUMN_WIDTH}
-          rowCount={1 + references.length}
-          rowHeight={ROW_HEIGHT}
-          onScroll={handleScroll}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Fixed header with hidden scroll */}
+        <div
+          ref={headerScrollRef}
+          className="overflow-x-hidden"
+          style={{ overflowY: 'hidden' }}
         >
-          {Cell}
-        </FixedSizeGrid>
+          {renderHeaderRow()}
+        </div>
+
+        {/* Scrollable grid content */}
+        <div className="flex-1">
+          <FixedSizeGrid
+            ref={gridRef}
+            className="scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
+            width={gridWidth}
+            height={gridHeight}
+            columnCount={FIXED_COLUMNS + dates.length}
+            columnWidth={COLUMN_WIDTH}
+            rowCount={references.length}
+            rowHeight={ROW_HEIGHT}
+            onScroll={handleGridScroll}
+          >
+            {({ columnIndex, rowIndex, style }) => {
+              // Adjust rowIndex to skip header row which is now separate
+              const adjustedRowIndex = rowIndex + 1;
+              return Cell({ columnIndex, rowIndex: adjustedRowIndex, style });
+            }}
+          </FixedSizeGrid>
+        </div>
       </div>
     </div>
   );
