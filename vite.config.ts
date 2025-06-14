@@ -18,6 +18,7 @@ export default defineConfig({
   build: {
     target: 'esnext',
     sourcemap: true,
+    outDir: 'dist'
   },
   optimizeDeps: {
     exclude: ['comlink'],
