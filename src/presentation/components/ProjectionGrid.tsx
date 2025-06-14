@@ -44,7 +44,7 @@ export const ProjectionGrid: React.FC<ProjectionGridProps> = ({ width, height })
   const visibleColumns = Math.floor(gridWidth / COLUMN_WIDTH);
 
   // State for tracking which dates are visible
-  const [visibleDateRange, setVisibleDateRange] = useState<[number, number]>([0, visibleColumns - FIXED_COLUMNS]);
+  const [, setVisibleDateRange] = useState<[number, number]>([0, visibleColumns - FIXED_COLUMNS]);
 
   // Handle scrolling to update visible date range
   const handleScroll = ({ scrollLeft }: { scrollLeft: number }) => {
