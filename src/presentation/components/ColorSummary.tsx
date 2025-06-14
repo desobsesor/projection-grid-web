@@ -53,7 +53,7 @@ export const ColorSummary: React.FC<ColorSummaryProps> = ({ summary }) => {
 
   return (
     <div className="bg-white p-4 rounded shadow-md">
-      <h2 className="text-lg font-semibold mb-4 text-gray-800">Summary</h2>
+      <h2 className="text-lg font-semibold mb-4 text-gray-800">Real-time summary</h2>
 
       <div className="space-y-3">
         {colorsToDisplay.map((color) => {

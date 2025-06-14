@@ -49,7 +49,7 @@ export const ProductProjection: React.FC = () => {
           </div>
         </div>
       )}
-      <footer className="text-center mx-auto py-0 w-full">
+      <footer className="text-center mx-auto pt-2 w-full">
         Daily product projection. Developed by desobsesor © 2025
       </footer>
     </div>

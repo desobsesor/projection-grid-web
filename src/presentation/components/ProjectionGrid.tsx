@@ -160,7 +160,7 @@ export const ProjectionGrid: React.FC<ProjectionGridProps> = ({ width, height })
       <div className="w-300 p-4 bg-gray-50 border-r border-gray-300">
         <h2 className="text-lg font-xl mb-2 ml-2">
           {selectedDate ? (
-            <span>Summary for {new Date(selectedDate).toLocaleDateString()}</span>
+            <span>Summary for <span className='font-bold'>{new Date(selectedDate).toLocaleDateString()}</span></span>
           ) : (
             <span>Summary general</span>
           )}
@@ -170,12 +170,12 @@ export const ProjectionGrid: React.FC<ProjectionGridProps> = ({ width, height })
 
       {/* Grid panel */}
       <div className="flex-1 overflow-hidden">
-        <div style={{ height: HEADER_HEIGHT }} className="bg-gray-200"></div>
+        {/*<div style={{ height: HEADER_HEIGHT }} className="bg-gray-200"></div>*/}
 
         <FixedSizeGrid
           className="scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200"
           width={gridWidth}
-          height={gridHeight}
+          height={gridHeight + HEADER_HEIGHT}
           columnCount={FIXED_COLUMNS + dates.length}
           columnWidth={COLUMN_WIDTH}
           rowCount={1 + references.length}

@@ -107,7 +107,7 @@ export const GridCell: React.FC<GridCellProps> = ({
           onKeyDown={handleKeyDown}
         />
       ) : (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex w-full flex-col items-center justify-center">
           {isEditable && (
             <span className="text-md opacity-80">{product.MakeToOrder}</span>
           )}
