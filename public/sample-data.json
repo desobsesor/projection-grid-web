@@ -1,0 +1,154 @@
+{
+  "Datos": [
+    {
+      "CenterCode": "BCV",
+      "Reference": "210001000004R20",
+      "VisibleForecastedDate": "2025-03-21T00:00:00",
+      "NetFlow": 1513.0,
+      "GreenZone": 121.768285,
+      "YellowZone": 121.768285,
+      "RedZone": 194.829256,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "BCV",
+      "Reference": "210001000004R20",
+      "VisibleForecastedDate": "2025-03-22T00:00:00",
+      "NetFlow": 1200.0,
+      "GreenZone": 100.0,
+      "YellowZone": 100.0,
+      "RedZone": 150.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "BCV",
+      "Reference": "210001000004R20",
+      "VisibleForecastedDate": "2025-03-23T00:00:00",
+      "NetFlow": 800.0,
+      "GreenZone": 80.0,
+      "YellowZone": 80.0,
+      "RedZone": 120.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "BCV",
+      "Reference": "210001000004R20",
+      "VisibleForecastedDate": "2025-03-24T00:00:00",
+      "NetFlow": 600.0,
+      "GreenZone": 60.0,
+      "YellowZone": 60.0,
+      "RedZone": 90.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "BCV",
+      "Reference": "210001000004R20",
+      "VisibleForecastedDate": "2025-03-25T00:00:00",
+      "NetFlow": 500.0,
+      "GreenZone": 50.0,
+      "YellowZone": 50.0,
+      "RedZone": 80.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "BCV",
+      "Reference": "210002000078R1",
+      "VisibleForecastedDate": "2025-03-21T00:00:00",
+      "NetFlow": 500.0,
+      "GreenZone": 50.0,
+      "YellowZone": 50.0,
+      "RedZone": 80.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "BCV",
+      "Reference": "210002000078R1",
+      "VisibleForecastedDate": "2025-03-22T00:00:00",
+      "NetFlow": 450.0,
+      "GreenZone": 45.0,
+      "YellowZone": 45.0,
+      "RedZone": 70.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "BCV",
+      "Reference": "210002000078R1",
+      "VisibleForecastedDate": "2025-03-23T00:00:00",
+      "NetFlow": 400.0,
+      "GreenZone": 40.0,
+      "YellowZone": 40.0,
+      "RedZone": 60.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "BCV",
+      "Reference": "210002000078R1",
+      "VisibleForecastedDate": "2025-03-24T00:00:00",
+      "NetFlow": 350.0,
+      "GreenZone": 35.0,
+      "YellowZone": 35.0,
+      "RedZone": 55.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "BCV",
+      "Reference": "210002000078R1",
+      "VisibleForecastedDate": "2025-03-25T00:00:00",
+      "NetFlow": 300.0,
+      "GreenZone": 30.0,
+      "YellowZone": 30.0,
+      "RedZone": 50.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "AKL",
+      "Reference": "210003000015R30",
+      "VisibleForecastedDate": "2025-03-21T00:00:00",
+      "NetFlow": 200.0,
+      "GreenZone": 20.0,
+      "YellowZone": 20.0,
+      "RedZone": 30.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "AKL",
+      "Reference": "210003000015R30",
+      "VisibleForecastedDate": "2025-03-22T00:00:00",
+      "NetFlow": 180.0,
+      "GreenZone": 18.0,
+      "YellowZone": 18.0,
+      "RedZone": 28.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "AKL",
+      "Reference": "210003000015R30",
+      "VisibleForecastedDate": "2025-03-23T00:00:00",
+      "NetFlow": 160.0,
+      "GreenZone": 16.0,
+      "YellowZone": 16.0,
+      "RedZone": 26.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "AKL",
+      "Reference": "210003000015R30",
+      "VisibleForecastedDate": "2025-03-24T00:00:00",
+      "NetFlow": 140.0,
+      "GreenZone": 14.0,
+      "YellowZone": 14.0,
+      "RedZone": 24.0,
+      "MakeToOrder": 0
+    },
+    {
+      "CenterCode": "AKL",
+      "Reference": "210003000015R30",
+      "VisibleForecastedDate": "2025-03-25T00:00:00",
+      "NetFlow": 120.0,
+      "GreenZone": 12.0,
+      "YellowZone": 12.0,
+      "RedZone": 22.0,
+      "MakeToOrder": 0
+    }
+  ]
+}
