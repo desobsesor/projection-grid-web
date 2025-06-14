@@ -38,7 +38,7 @@ export const DataLoader: React.FC = () => {
           "GreenZone": 20.0,
           "YellowZone": 20.0,
           "RedZone": 30.0,
-          "MakeToOrder": 0
+          "MakeToOrder": -170
         },
         {
           "CenterCode": "AKL",
@@ -58,7 +58,7 @@ export const DataLoader: React.FC = () => {
           "GreenZone": 18.0,
           "YellowZone": 18.0,
           "RedZone": 28.0,
-          "MakeToOrder": 0
+          "MakeToOrder": -130
         },
         {
           "CenterCode": "AKL",
@@ -68,7 +68,7 @@ export const DataLoader: React.FC = () => {
           "GreenZone": 16.0,
           "YellowZone": 16.0,
           "RedZone": 26.0,
-          "MakeToOrder": 0
+          "MakeToOrder": -130
         },
         {
           "CenterCode": "AKL",
@@ -154,11 +154,11 @@ export const DataLoader: React.FC = () => {
           "CenterCode": "BCV",
           "Reference": "210001000004R20",
           "VisibleForecastedDate": "2025-03-20T00:00:00",
-          "NetFlow": 1500.6344,
-          "GreenZone": 121.768285,
-          "YellowZone": 121.768285,
-          "RedZone": 194.829256,
-          "MakeToOrder": 0
+          "NetFlow": 100.0,
+          "GreenZone": 55.0,
+          "YellowZone": 55.0,
+          "RedZone": 50.0,
+          "MakeToOrder": 23
         }, {
           "CenterCode": "BCV",
           "Reference": "210001000004R20",
