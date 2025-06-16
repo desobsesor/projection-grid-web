@@ -14,7 +14,6 @@ export class ProductDataService {
       const parsedData: ProductDataResponse = JSON.parse(jsonData);
       return Array.isArray(parsedData.Datos) ? parsedData.Datos : [parsedData.Datos];
     } catch (error) {
-      console.error('Error parsing product data:', error);
       return [];
     }
   }
