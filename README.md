@@ -103,10 +103,20 @@ The background color of each cell is determined according to the calculation `Ne
 
 ## Production Build 🛠️
 
-```
+```bash
 npm run build
 ```
 Compiled files will be available in the `dist` directory.
+
+## Testing 🧪
+To run the tests, execute the following command:
+```bash
+npm test
+```
+
+<h3>Test Coverage Guide</h3>
+<p>For visual inspection of test coverage, please visit <a href="./coverage/lcov-report/index.html">Test Coverage</a> before building the project.</p>
+
 
 ## Author ✒️
 
