@@ -99,7 +99,7 @@ export const GridCell: React.FC<GridCellProps> = ({
       {isEditing && isEditable ? (
         <input
           ref={inputRef}
-          type="number"
+          type="text"
           className="w-full text-center text-black"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value.replace(/[^-0-9]/g, ''))}
