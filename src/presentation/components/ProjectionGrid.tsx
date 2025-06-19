@@ -3,6 +3,7 @@ import { FixedSizeGrid } from 'react-window';
 import { useProductStore } from '../../application/store/productStore';
 import { GridCell } from './GridCell';
 import { ColorSummary } from './ColorSummary';
+import { Icon } from './Icon';
 
 /** 
 * Interface for ProjectionGrid component
@@ -33,7 +34,7 @@ export const ProjectionGrid: React.FC<ProjectionGridProps> = ({ width, height })
   } = useProductStore();
 
   // Constants for grid layout
-  const COLUMN_WIDTH = 120;
+  const COLUMN_WIDTH = 110;
   const ROW_HEIGHT = 40;
   const HEADER_HEIGHT = 40;
   const FIXED_COLUMNS = 2; // CenterCode and Reference columns
@@ -139,7 +140,7 @@ export const ProjectionGrid: React.FC<ProjectionGridProps> = ({ width, height })
 
         if (product) {
           return (
-            <div style={style} className="border-b border-r border-gray-300">
+            <div style={style} className="border-b border-r border-gray-300 text-sm font-medium">
               <GridCell
                 product={product}
                 isEditable={true}
@@ -174,12 +175,12 @@ export const ProjectionGrid: React.FC<ProjectionGridProps> = ({ width, height })
           return (
             <div
               key={date}
-              className={`text-md flex items-center justify-center border-b border-r border-gray-300 cursor-pointer transition-colors duration-150 hover:bg-blue-50 ${isSelected ? 'bg-blue-200 hover:bg-blue-200' : 'bg-gray-200'}`}
+              className={`text-xs font-bold flex items-center justify-center border-b border-r border-gray-300 cursor-pointer transition-colors duration-150 hover:bg-blue-50 ${isSelected ? 'bg-blue-200 hover:bg-blue-200' : 'bg-gray-200'}`}
               style={{ width: COLUMN_WIDTH, minWidth: COLUMN_WIDTH }}
               onClick={() => selectDate(date)}
               title="Click to filter by this date"
             >
-              {new Date(date).toLocaleDateString()}
+              <Icon svgPath="M7 11h2v2H7zm12-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 16H5V10h14zm0-12H5V6h14zm-4 3h2v2h-2zm-4 0h2v2h-2z" className="h-5 w-5 mr-1 text-gray-400" /> {new Date(date).toLocaleDateString()}
             </div>
           );
         })}
@@ -205,7 +206,10 @@ export const ProjectionGrid: React.FC<ProjectionGridProps> = ({ width, height })
       <div className="w-300 p-4 bg-gray-50 border-r border-gray-300">
         <h2 className="text-lg font-xl mb-2 ml-2">
           {selectedDate ? (
-            <span>Summary for <span className='font-bold'>{new Date(selectedDate).toLocaleDateString()}</span></span>
+            <span className='text-sm flex items-center text-center'>Summary for:
+              <Icon svgPath="M7 11h2v2H7zm12-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 16H5V10h14zm0-12H5V6h14zm-4 3h2v2h-2zm-4 0h2v2h-2z" className="h-5 w-5 mr-1 ml-3 text-gray-400" />
+              <span className='font-medium'>{new Date(selectedDate).toLocaleDateString()}</span>
+            </span>
           ) : (
             <span>Summary general</span>
           )}
