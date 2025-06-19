@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useProductStore } from '../../application/store/productStore';
+import { Icon } from './Icon';
 
 /**
  * Component for loading JSON data into the application
@@ -24,6 +25,10 @@ export const DataLoader: React.FC = () => {
 
   const handleButtonClick = () => {
     fileInputRef.current?.click();
+  };
+
+  const handleResetData = () => {
+    loadProducts('');
   };
 
   const handleDemoData = () => {
@@ -406,15 +411,23 @@ export const DataLoader: React.FC = () => {
       />
       <button
         onClick={handleButtonClick}
-        className="px-4 items-end justify-end py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+        className="px-4 flex items-end justify-end py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
       >
+        <Icon svgPath="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5c0-2.64-2.05-4.78-4.65-4.96M19 18H6c-2.21 0-4-1.79-4-4c0-2.05 1.53-3.76 3.56-3.97l1.07-.11l.5-.95A5.47 5.47 0 0 1 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5l1.53.11A2.98 2.98 0 0 1 22 15c0 1.65-1.35 3-3 3M8 13h2.55v3h2.9v-3H16l-4-4z" className="h-6 w-6  mr-1 text-white" />
         Upload JSON file
       </button>
       <button
         onClick={handleDemoData}
-        className="px-4 items-end justify-end py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+        className="px-4 flex items-end justify-end py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
       >
+        <Icon svgPath="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10s10-4.49 10-10S17.51 2 12 2m-1 8V6h2v4h3l-4 4l-4-4zm6 7H7v-2h10z" className="h-6 w-6 text-white mr-1" />
         Load demo data
+      </button>
+      <button
+        onClick={handleResetData}
+        className="px-4 flex items-end justify-end py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+      >
+        <Icon svgPath="M12 6v3l4-4l-4-4v3c-4.42 0-8 3.58-8 8c0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.9 5.9 0 0 1 6 12c0-3.31 2.69-6 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8c0 3.31-2.69 6-6 6v-3l-4 4l4 4v-3c4.42 0 8-3.58 8-8c0-1.57-.46-3.03-1.24-4.26" className="h-6 w-6 mr-1 text-white" /> Reset data
       </button>
     </div>
   );

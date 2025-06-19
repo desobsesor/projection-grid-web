@@ -41,9 +41,14 @@ export const ProductProjection: React.FC = () => {
         </div>
       ) : (
         <div className="flex-1 flex items-center justify-center bg-gray-100 border border-gray-300 rounded">
+
+
           <div className="text-center p-8">
-            <h2 className="text-xl font-semibold mb-2">No data loaded</h2>
-            <p className="text-gray-600 mb-4">
+            <p className='flex justify-center'>
+              <img src="/no-data-found.jpeg" alt="No data" className="border border-gray-300 rounded-md justify-center text-center items-center" />
+            </p>
+            <h2 className="text-xl font-semibold text-center mb-2 mt-4">No data loaded</h2>
+            <p className="text-gray-600 text-center mb-4">
               Please upload a JSON file with projection data or use the demo data.
             </p>
           </div>
