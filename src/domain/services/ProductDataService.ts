@@ -21,7 +21,6 @@ export class ProductDataService {
   /**
    * Determines the cell color based on calculation rules
    * @param netFlow The NetFlow value
-   * @param makeToOrder The MakeToOrder value
    * @param redZone The RedZone threshold
    * @param yellowZone The YellowZone threshold
    * @param greenZone The GreenZone threshold
@@ -29,12 +28,11 @@ export class ProductDataService {
    */
   static calculateCellColor(
     netFlow: number,
-    makeToOrder: number,
     redZone: number,
     yellowZone: number,
     greenZone: number
   ): CellColor {
-    const total = netFlow + makeToOrder;
+    const total = netFlow;
 
     if (total == 0) {
       return CellColor.BLACK;

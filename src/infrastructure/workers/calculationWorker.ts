@@ -17,12 +17,11 @@ const workerApi = {
    */
   calculateCellColor(
     netFlow: number,
-    makeToOrder: number,
     redZone: number,
     yellowZone: number,
     greenZone: number
   ): CellColor {
-    const total = netFlow + makeToOrder;
+    const total = netFlow;
 
     if (total === 0) {
       return CellColor.BLACK;
@@ -61,7 +60,6 @@ const workerApi = {
     products.forEach(product => {
       const color = this.calculateCellColor(
         product.NetFlow,
-        product.MakeToOrder,
         product.RedZone,
         product.YellowZone,
         product.GreenZone
