@@ -21,7 +21,7 @@ interface ProductState {
 
   // Actions
   loadProducts: (jsonData: string) => void;
-  updateMakeToOrder: (reference: string, date: string, value: number) => void;
+  updateMakeToOrder: (reference: string, date: string, newValue: number, delta: number) => void;
   selectDate: (date: string) => void;
 }
 
@@ -71,24 +71,43 @@ export const useProductStore = create<ProductState>((set, get) => ({
     });
   },
 
-  updateMakeToOrder: (reference: string, date: string, value: number) => {
-    const { organizedData, products, selectedDate } = get();
+  updateMakeToOrder: (reference: string, date: string, newValue: number, delta: number) => {
+    const { organizedData, products, selectedDate, dates } = get();
 
-    // Update in organized data
-    const dateMap = organizedData.get(date);
-    if (dateMap && dateMap.has(reference)) {
-      const product = dateMap.get(reference)!;
-      product.MakeToOrder = value;
-      dateMap.set(reference, product);
+    // Create a mutable copy of organizedData for updates
+    const newOrganizedData = new Map(organizedData);
+
+    // Find the index of the current date
+    const currentDateIndex = dates.indexOf(date);
+
+    // Iterate through dates from the current date onwards
+    for (let i = currentDateIndex; i < dates.length; i++) {
+      const currentDate = dates[i];
+      const dateMap = newOrganizedData.get(currentDate);
+
+      if (dateMap && dateMap.has(reference)) {
+        const product = { ...dateMap.get(reference)! }; // Create a mutable copy of the product
+
+        if (currentDate === date) {
+          // For the edited cell, set the new value directly
+          product.MakeToOrder = newValue;
+        } else {
+          // For subsequent cells, add the delta
+          product.MakeToOrder += delta;
+        }
+
+        // Recalculate NetFlow and color for the updated product
+        product.NetFlow = product.MakeToOrder + product.NetFlow;
+
+        dateMap.set(reference, product);
+      }
     }
 
-    // Update in raw products array
-    const updatedProducts = products.map(product => {
-      if (product.Reference === reference &&
-        new Date(product.VisibleForecastedDate).toISOString().split('T')[0] === date) {
-        return { ...product, MakeToOrder: value };
-      }
-      return product;
+    // Update the raw products array based on the new organizedData
+    const updatedProducts = products.map(p => {
+      const productDate = new Date(p.VisibleForecastedDate).toISOString().split('T')[0];
+      const updatedProduct = newOrganizedData.get(productDate)?.get(p.Reference);
+      return updatedProduct || p;
     });
 
     // Recalculate color summary based on selected date
@@ -98,7 +117,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
 
     set({
       products: updatedProducts,
-      organizedData: new Map(organizedData),
+      organizedData: newOrganizedData,
       colorSummary
     });
   },
@@ -135,7 +154,6 @@ function calculateColorSummary(products: ProductData[]): ColorSummary {
   products.forEach(product => {
     const color = ProductDataService.calculateCellColor(
       product.NetFlow,
-      product.MakeToOrder,
       product.RedZone,
       product.YellowZone,
       product.GreenZone
@@ -172,7 +190,6 @@ function calculateColorSummaryForDate(products: ProductData[], date: string): Co
   dateProducts.forEach(product => {
     const color = ProductDataService.calculateCellColor(
       product.NetFlow,
-      product.MakeToOrder,
       product.RedZone,
       product.YellowZone,
       product.GreenZone

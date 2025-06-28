@@ -12,7 +12,7 @@ import { ProductDataService } from '../../domain/services/ProductDataService';
 interface GridCellProps {
   product: ProductData;
   isEditable?: boolean;
-  onValueChange?: (value: number) => void;
+  onValueChange: (reference: string, date: string, newValue: number, delta: number) => void;
 }
 
 /**
@@ -51,7 +51,6 @@ export const GridCell: React.FC<GridCellProps> = ({
   // Calculate cell color based on product data
   const cellColor = ProductDataService.calculateCellColor(
     product.NetFlow,
-    product.MakeToOrder,
     product.RedZone,
     product.YellowZone,
     product.GreenZone
@@ -76,7 +75,8 @@ export const GridCell: React.FC<GridCellProps> = ({
     const numValue = parseFloat(inputValue);
 
     if (!isNaN(numValue) && numValue !== product.MakeToOrder) {
-      onValueChange?.(numValue);
+      const delta = numValue - product.MakeToOrder;
+      onValueChange(product.Reference, new Date(product.VisibleForecastedDate).toISOString().split('T')[0], numValue, delta);
     } else {
       setInputValue(product.MakeToOrder.toString());
     }
@@ -109,7 +109,7 @@ export const GridCell: React.FC<GridCellProps> = ({
       ) : (
         <div className="flex w-full flex-col items-center justify-center">
           {isEditable && (
-            <span className="text-md opacity-80">{product.MakeToOrder}</span>
+            <span title={`${product.MakeToOrder} + ${product.NetFlow}`} className="text-md opacity-80">{product.MakeToOrder}</span>
           )}
         </div>
       )}
